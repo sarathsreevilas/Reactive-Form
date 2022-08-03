@@ -2,16 +2,36 @@
 
   <form [formGroup]="regiestrationForm" (ngSubmit)="onsubmit()">
     <label>First Name : </label>
-    <input type="text" placeholder="First Name" class="form-control" formControlName='firstName'>
+    <input type="text" placeholder="First Name" class="form-control" formControlName='firstName'
+     [ngClass]="{'is-invalid':submit&&f.firstName.errors}">
+      <div *ngIf='submit&&f.firstName.errors' class="invalid-feedback">
+        <div *ngIf="f.firstName.errors.required">First name is required</div>
+        </div>
 
     <label>Last Name : </label>
-    <input type="text" placeholder="Last Name" class="form-control" formControlName="lastName">
+    <input type="text" placeholder="Last Name" class="form-control" formControlName="lastName"
+    [ngClass]="{'is-invalid':submit&&f.lastName.errors}">
+    <div *ngIf='submit&&f.lastName.errors' class="invalid-feedback">
+      <div *ngIf="f.lastName.errors.required">Last name is required</div>
+      </div>
 
     <label>Phone Number : </label>
-    <input type="text" placeholder="Phone Number" class="form-control" formControlName="phone">
+    <input type="number" placeholder="Phone Number" class="form-control" formControlName="phone"
+    [ngClass]="{'is-invalid':submit&&f.phone.errors}">
+    <div *ngIf='submit&&f.phone.errors' class="invalid-feedback">
+      <div *ngIf="f.phone.errors.required">phnoe number is required</div>
+      <div *ngIf="f.phone.errors.pattern">invaild phone number</div>
+      
+    </div>
 
     <label>Email : </label>
-    <input type="text" placeholder="Email" class="form-control" formControlName="email">
+    <input type="email" placeholder="Email" class="form-control" formControlName="email"
+    [ngClass]="{'is-invalid':submit&&f.email.errors}">
+    <div *ngIf='submit&&f.email.errors' class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">email is required</div>
+      <div *ngIf="f.email.errors.email">invalid email</div>
+      
+    </div>
 
     <br>
     <button type="submit" class="btn btn-sucess">submit</button>
